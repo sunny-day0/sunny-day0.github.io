@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="新工具使用及命令信息收集[+]hakrawler1用于收集 URL 和 JavaScript 文件位置的快速 golang 网络爬虫。这基本上是很棒的 Gocolly 库的简单实现。  用法; 1234567891011121314单个网址：echo https:&#x2F;&#x2F;google.com | hakrawler多个网址：cat urls.txt | hakrawler每行 stdin 5 秒后超时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tools用法">
+<meta property="og:url" content="http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Sunny Day">
+<meta property="og:description" content="新工具使用及命令信息收集[+]hakrawler1用于收集 URL 和 JavaScript 文件位置的快速 golang 网络爬虫。这基本上是很棒的 Gocolly 库的简单实现。  用法; 1234567891011121314单个网址：echo https:&#x2F;&#x2F;google.com | hakrawler多个网址：cat urls.txt | hakrawler每行 stdin 5 秒后超时">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-17T16:30:28.000Z">
+<meta property="article:modified_time" content="2023-08-18T07:59:06.532Z">
+<meta property="article:author" content="Sunny Day">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>tools用法</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/07/18/tools/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/07/18/%E5%9C%A8%E7%BA%BF%E7%BD%91%E5%9D%80/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&text=tools用法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&is_video=false&description=tools用法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=tools用法&body=Check out this article: http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&name=tools用法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&t=tools用法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">新工具使用及命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hakrawler"><span class="toc-number">1.1.1.</span> <span class="toc-text">[+]hakrawler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Osmedeus"><span class="toc-number">1.1.2.</span> <span class="toc-text">[+]Osmedeus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reNgine"><span class="toc-number">1.1.3.</span> <span class="toc-text">[+]reNgine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gobuster"><span class="toc-number">1.1.4.</span> <span class="toc-text">[+]gobuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#whatweb"><span class="toc-number">1.1.5.</span> <span class="toc-text">[+]whatweb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rustscan"><span class="toc-number">1.1.6.</span> <span class="toc-text">[+]rustscan</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#feroxbuster"><span class="toc-number">1.1.7.</span> <span class="toc-text">[+]feroxbuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkFinder"><span class="toc-number">1.1.8.</span> <span class="toc-text">[+]LinkFinder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSStrike"><span class="toc-number">1.1.9.</span> <span class="toc-text">[+]XSStrike</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xray"><span class="toc-number">1.1.10.</span> <span class="toc-text">[+]xray</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nuclei"><span class="toc-number">1.1.11.</span> <span class="toc-text">[+]Nuclei</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dict"><span class="toc-number">1.1.12.</span> <span class="toc-text">[+]dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Findomain"><span class="toc-number">1.1.13.</span> <span class="toc-text">[+]Findomain</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#subfinder"><span class="toc-number">1.1.14.</span> <span class="toc-text">[+]subfinder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URLFinder-go"><span class="toc-number">1.1.15.</span> <span class="toc-text">[+]URLFinder(go)</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        tools用法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Sunny Day</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-17T16:30:28.000Z" class="dt-published" itemprop="datePublished">2023-07-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="新工具使用及命令"><a href="#新工具使用及命令" class="headerlink" title="新工具使用及命令"></a>新工具使用及命令</h2><h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><h4 id="hakrawler"><a href="#hakrawler" class="headerlink" title="[+]hakrawler"></a>[+]hakrawler</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用于收集 URL 和 JavaScript 文件位置的快速 golang 网络爬虫。这基本上是很棒的 Gocolly 库的简单实现。</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法;</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个网址：</span><br><span class="line">echo https://google.com | hakrawler</span><br><span class="line"></span><br><span class="line">多个网址：</span><br><span class="line">cat urls.txt | hakrawler</span><br><span class="line"></span><br><span class="line">每行 stdin 5 秒后超时：</span><br><span class="line">cat urls.txt | hakrawler -timeout 5</span><br><span class="line"></span><br><span class="line">通过代理发送所有请求：</span><br><span class="line">cat urls.txt | hakrawler -proxy http://localhost:8080</span><br><span class="line"></span><br><span class="line">包括子域：</span><br><span class="line">echo https://google.com | hakrawler -subs</span><br></pre></td></tr></table></figure>
+
+<h4 id="Osmedeus"><a href="#Osmedeus" class="headerlink" title="[+]Osmedeus"></a><strong>[+]Osmedeus</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Osmedeus 是一个用于进攻性安全的工作流引擎。</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root：</span><br><span class="line">web页面:osmedeus server</span><br><span class="line">登录凭证在root目录下面：~/osmedeus/config.yaml</span><br><span class="line"></span><br><span class="line">osmedeus scan -t sample.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="reNgine"><a href="#reNgine" class="headerlink" title="[+]reNgine"></a><strong>[+]reNgine</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reNgine 是一个 Web 应用程序侦察套件，专注于通过引擎实现高度可配置的简化侦察流程、侦察数据关联、持续监控、数据库支持的侦察数据以及简单而直观的用户界面。凭借子扫描、更深层次的关联、报告生成等功能，reNgine 旨在弥补传统侦察工具的差距，并可能成为现有商业工具的更好替代品。</span><br></pre></td></tr></table></figure>
+
+<h4 id="gobuster"><a href="#gobuster" class="headerlink" title="[+]gobuster"></a>[+]gobuster</h4><p>用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">dns:</span><br><span class="line">gobuster dns -d mysite.com -t 50 -w common-names.txt</span><br><span class="line"></span><br><span class="line">dir模式:</span><br><span class="line">gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt</span><br><span class="line"></span><br><span class="line">报错</span><br><span class="line">Error: the server returns a status code that matches the provided options for non existing urls. https://host.com/52414aa3-e124-418c-abfc-2b6136996a92 =&gt; 200 (Length: 9364). To continue please exclude the status code or the length</span><br><span class="line">加上：--exclude-length 9364</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="whatweb"><a href="#whatweb" class="headerlink" title="[+]whatweb"></a><strong>[+]whatweb</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WhatWeb可识别Web技术，包括内容管理系统（CMS），博客平台，统计/分析包，Javascript库，服务器和嵌入式设备。</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb 网址</span><br></pre></td></tr></table></figure>
+
+<h4 id="rustscan"><a href="#rustscan" class="headerlink" title="[+]rustscan"></a><strong>[+]rustscan</strong></h4><p><strong>用法:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">单独端口扫描</span><br><span class="line">➜ rustscan -a 127.0.0.1 -p 53</span><br><span class="line"></span><br><span class="line">多选端口扫描</span><br><span class="line">➜ rustscan -a 127.0.0.1 -p 53,80,121,65535</span><br><span class="line"></span><br><span class="line">端口范围</span><br><span class="line">➜ rustscan -a 127.0.0.1 --range 1-1000</span><br><span class="line"></span><br><span class="line">调整 Nmap 参数</span><br><span class="line">RustScan 目前默认运行 Nmap。</span><br><span class="line"></span><br><span class="line">您可以像这样调整参数：</span><br><span class="line">rustscan -a 127.0.0.1 -- -A -sC</span><br><span class="line">nmap：</span><br><span class="line">nmap -Pn -vvv -p $PORTS -A -sC 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="feroxbuster"><a href="#feroxbuster" class="headerlink" title="[+]feroxbuster"></a><strong>[+]feroxbuster</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此攻击也称为可预测资源位置、文件枚举、目录枚举和资源枚举。(rust)</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">检测目录列表：</span><br><span class="line">feroxbuster -u https://some-example-site.com</span><br><span class="line"> </span><br><span class="line">IPv6、启用 INFO 级别日志记录的非递归扫描 </span><br><span class="line">./feroxbuster -u http://[::1] --no-recursion -vv</span><br><span class="line"></span><br><span class="line">使用时--extract-links，响应中的每个链接都会被提取并请求。</span><br><span class="line">feroxbuster -u https://some-example-site.com --extract-links</span><br><span class="line"></span><br><span class="line">从响应正文中提取链接</span><br><span class="line">./feroxbuster -u http://127.1 --extract-links</span><br><span class="line"></span><br><span class="line">按特定状态代码和字符数过滤：</span><br><span class="line"># feroxbuster --url &quot;https://example.com&quot; --filter-status 301 --filter-size 4092</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="LinkFinder"><a href="#LinkFinder" class="headerlink" title="[+]LinkFinder"></a><strong>[+]LinkFinder</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LinkFinder 是一个 Python 脚本，用于发现 JavaScript 文件中的端点及其参数</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在在线 JavaScript 文件中查找端点并将 HTML 结果输出到 results.html 的最基本用法：</span><br><span class="line">python linkfinder.py -i https://example.com/1.js -o results.html</span><br><span class="line"></span><br><span class="line">CLI/STDOUT 输出（不使用 jsbeautifier，这使得它非常快）：</span><br><span class="line">python linkfinder.py -i https://example.com/1.js -o cli</span><br><span class="line"></span><br><span class="line">分析整个域及其 JS 文件：</span><br><span class="line">python linkfinder.py -i https://example.com -d</span><br><span class="line"></span><br><span class="line">Burp 输入（在目标中选择要保存的文件，右键单击，Save selected items将该文件作为输入）：</span><br><span class="line">python linkfinder.py -i burpfile -b</span><br><span class="line"></span><br><span class="line">枚举 JavaScript 文件的整个文件夹，同时查找以 /api/ 开头的端点，最后将结果保存到 results.html：</span><br><span class="line">python linkfinder.py -i &#x27;Desktop/*.js&#x27; -r ^/api/ -o results.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="XSStrike"><a href="#XSStrike" class="headerlink" title="[+]XSStrike"></a>[+]<strong>XSStrike</strong></h4><h4 id="xray"><a href="#xray" class="headerlink" title="[+]xray"></a><strong>[+]xray</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">基础爬虫模式</span><br><span class="line">./xray_windows_amd64 webscan --basic-crawler http://testphp.vulnweb.com/ --html-output xray-crawler-testphp.html</span><br><span class="line"></span><br><span class="line">代理模式</span><br><span class="line">.\xray_windows_amd64.exe webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="Nuclei"><a href="#Nuclei" class="headerlink" title="[+]Nuclei"></a><strong>[+]Nuclei</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nuclei 用于基于模板跨目标发送请求，从而实现零误报并提供对大量主机的快速扫描。Nuclei 提供对各种协议的扫描，包括 TCP、DNS、HTTP、SSL、File、Whois、Websocket、Headless 等。凭借强大而灵活的模板，Nuclei 可用于对各种安全检查进行建模。</span><br></pre></td></tr></table></figure>
+
+<p>用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">使用社区策划的核心模板扫描目标域。</span><br><span class="line">nuclei -u https://example.com</span><br><span class="line"></span><br><span class="line">使用社区策划的核心模板扫描目标 URL。</span><br><span class="line">nuclei -list urls.txt</span><br><span class="line"></span><br><span class="line">运行单个模块</span><br><span class="line">这将对urls.txt中所有的主机运行git-core.yaml并返回结果到results.txt</span><br><span class="line">nuclei -l urls.txt -t files/git-core.yaml -o results.txt</span><br><span class="line"></span><br><span class="line">运行多个模板</span><br><span class="line">这将会对urls.txt中所有的URL运行cves和files模板检查，并返回输出到results.txt</span><br><span class="line">nuclei -l urls.txt -t cves/ -t files/ -o results.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="dict"><a href="#dict" class="headerlink" title="[+]dict"></a><strong>[+]dict</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/danielmiessler/SecLists</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Findomain"><a href="#Findomain" class="headerlink" title="[+]Findomain"></a><strong>[+]Findomain</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果您不想在执行侦察时处理服务器和复杂的配置，但希望集成解决方案具有更多功能，Findomain 提供子域监控服务，该服务提供目录模糊、端口扫描、漏洞发现等。使用多种流行工具（包括 OWASP Amass、Sublist3r、Assetfinder 和 Subfinder）监控您的目标域，并在发现新子域时通过 Discord、Slack、Telegram、电子邮件或推送通知（Android/iOS/智能手表/桌面）接收警报  （rust）</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">单个</span><br><span class="line">findomain -t example.org --external-subdomains</span><br><span class="line"></span><br><span class="line">多个</span><br><span class="line">findomain -f domains.txt --external-subdomains</span><br><span class="line"></span><br><span class="line">保存输出;</span><br><span class="line">findomain -t example.org --external-subdomains -r -u example.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="subfinder"><a href="#subfinder" class="headerlink" title="[+]subfinder"></a>[+]<strong>subfinder</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subfinder是一个子域发现工具，它使用被动在线资源返回网站的有效子域。它具有简单的模块化架构，并针对速度进行了优化。subfinder专为做一件事而构建 - 被动子域枚举，并且它做得非常好。  go</span><br></pre></td></tr></table></figure>
+
+<p><strong>用法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">单个：</span><br><span class="line">subfinder -d hackerone.com</span><br><span class="line"></span><br><span class="line">多个：</span><br><span class="line">subfinder -dL hackerone.com </span><br></pre></td></tr></table></figure>
+
+<h4 id="URLFinder-go"><a href="#URLFinder-go" class="headerlink" title="[+]URLFinder(go)"></a>[+]<strong>URLFinder(go)</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">URLFinder是一款快速、全面、易用的页面信息提取工具</span><br><span class="line">用于分析页面中的js与url,查找隐藏在其中的敏感信息或未授权api接口</span><br></pre></td></tr></table></figure>
+
+<p>用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单url</span><br><span class="line"></span><br><span class="line">显示全部状态码</span><br><span class="line">URLFinder.exe -u http://www.baidu.com -s all -m 3</span><br><span class="line"></span><br><span class="line">显示200和403状态码</span><br><span class="line">URLFinder.exe -u http://www.baidu.com -s 200,403 -m 3</span><br><span class="line">批量url</span><br><span class="line"></span><br><span class="line">结果分开保存</span><br><span class="line">URLFinder.exe -s all -m 3 -f url.txt -o d:/</span><br><span class="line"></span><br><span class="line">结果统一保存</span><br><span class="line">URLFinder.exe -s all -m 3 -ff url.txt -o d:/</span><br></pre></td></tr></table></figure>
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">新工具使用及命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hakrawler"><span class="toc-number">1.1.1.</span> <span class="toc-text">[+]hakrawler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Osmedeus"><span class="toc-number">1.1.2.</span> <span class="toc-text">[+]Osmedeus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reNgine"><span class="toc-number">1.1.3.</span> <span class="toc-text">[+]reNgine</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gobuster"><span class="toc-number">1.1.4.</span> <span class="toc-text">[+]gobuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#whatweb"><span class="toc-number">1.1.5.</span> <span class="toc-text">[+]whatweb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rustscan"><span class="toc-number">1.1.6.</span> <span class="toc-text">[+]rustscan</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#feroxbuster"><span class="toc-number">1.1.7.</span> <span class="toc-text">[+]feroxbuster</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkFinder"><span class="toc-number">1.1.8.</span> <span class="toc-text">[+]LinkFinder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSStrike"><span class="toc-number">1.1.9.</span> <span class="toc-text">[+]XSStrike</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xray"><span class="toc-number">1.1.10.</span> <span class="toc-text">[+]xray</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nuclei"><span class="toc-number">1.1.11.</span> <span class="toc-text">[+]Nuclei</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dict"><span class="toc-number">1.1.12.</span> <span class="toc-text">[+]dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Findomain"><span class="toc-number">1.1.13.</span> <span class="toc-text">[+]Findomain</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#subfinder"><span class="toc-number">1.1.14.</span> <span class="toc-text">[+]subfinder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URLFinder-go"><span class="toc-number">1.1.15.</span> <span class="toc-text">[+]URLFinder(go)</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&text=tools用法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&is_video=false&description=tools用法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=tools用法&body=Check out this article: http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&title=tools用法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&name=tools用法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/18/tools%E7%94%A8%E6%B3%95/&t=tools用法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Sunny Day
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/categories/">Category</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
